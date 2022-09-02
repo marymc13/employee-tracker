@@ -118,9 +118,40 @@ function addDepartment() {
     }
      
     //Add a Role
-    function addRole () {
-        
-    }
+    function addRole() {
+        db.findAllDepartments()
+        .then(([rows]) => {
+            let departments = rows;
+            const departmentChoices = departments.map(({ id, department_name }) => ({
+                name: department_name,
+                value: id
+            }));
+
+            prompt([
+                {
+                 name: "title",
+                 message: "WHat is the name of the role?"
+                },
+                {
+                    name: "salary",
+                    message: "WHat is the salary?"
+                },
+                {
+                    type: "list",
+                    name: "department_id",
+                    message: "Which department has this role?",
+                    choices: departmentChoices
+                }
+            ])
+            .then(role => {
+                db.createRole(role)
+                .then(() => console.log(`Added ${role.title} to database`))
+                .then(() => loadPrompts())
+            })
+         })
+        }
+
+    
     
 
 
