@@ -12,3 +12,4 @@ const db = mysql.createConnection(
     },
     console.log('Connected to the tracker database.')
   );
+  module.exports = new DB;

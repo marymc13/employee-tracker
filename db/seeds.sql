@@ -17,14 +17,14 @@ VALUES
 ('Returns Coordinator', 80000, 4),
 ('Returns Associate', 60000, 4);
 
-INSERT INTO employees (first_name, last_name, roles_id)
+INSERT INTO employees (first_name, last_name, title, roles_id)
 VALUES
-('Mark', 'Wallace', 1),
-('James', 'Smith', 1),
-('Mary', 'Swanson', 2),
-('John', 'Barnes', 3),
-('Bill', 'Monty', 4),
-('Lori', 'Williams', 4); 
+('Mark', 'Wallace','Sales Supervisor', 1),
+('James', 'Smith', 'Sales Associate',  1),
+('Mary', 'Swanson', 'Customer Service', 2),
+('John', 'Barnes', 'Product Repair', 3),
+('Bill', 'Monty', 'Returns Coordinator', 4),
+('Lori', 'Williams', 'Returns Associate', 4); 
 
 
 
