@@ -1,9 +1,13 @@
 const mysql = require('mysql2');
-const inquirer = require('inquirer');
+const { prompt } = require('inquirer');
 const db = require('./db');
-require('console.table');
+const cTable = require('console.table');
 
-loadPrompts();
+init();
+
+function init() {
+    loadPrompts();
+}
 
 //Choice List
 function loadPrompts() {
@@ -93,16 +97,17 @@ function viewDepartments() {
 function addDepartment() {
     prompt([
         {
-            name: "name",
+            name: "department_name",
             message: "What is the name of the department?"
         }
     ])
         .then(res => {
-            let name = res;
-            db.createDepartment(name)
-                .then(() => console.log(`Added ${name.name} to database`))
-        })
+            let department_name = res;
+            db.createDepartment(department_name)
+                .then(() => console.log(`Added ${department_name} to database`))
+       
         .then(() => loadPrompts());
+        })
 }
 
 //View Roles
@@ -175,9 +180,9 @@ function addEmployee() {
             message: "What is the employee's title?",
         }
     ])
-           // .then(res => {
-              //  let firstName = res.first_name;
-              //  let lastName = res.last_name;
+            .then(res => {
+                let firstName = res.first_name;
+                let lastName = res.last_name;
 
                 db.findAllRoles()
                     .then(([rows]) => {
@@ -188,21 +193,21 @@ function addEmployee() {
                         }));
                         prompt({
                             type: "list",
-                            name: "roleId",
+                            name: "roles_id",
                             message: "Which role does the title belong to?",
                             choices: roleChoices
                         })
-                           // .then(res => {
-                           //     let roleId = res.roleId;
-                           // })
-                    })
-
-                    .then(employee => {
+                           
+             .then(employee => {
                         db.createEmployee(employee)
                             .then(() => console.log(`Added ${first_name} ${last_name} to the database`))
                             .then(() => loadPrompts())
                     })
-            }
+                })
+            })
+        }
+
+        
         
         
 

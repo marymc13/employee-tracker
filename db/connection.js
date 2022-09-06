@@ -1,7 +1,7 @@
 const mysql = require('mysql2');
 
 // Connect to database
-const db = mysql.createConnection(
+const connection = mysql.createConnection(
     {
       host: 'localhost',
       // Your MySQL username,
@@ -9,7 +9,10 @@ const db = mysql.createConnection(
       // Your MySQL password
       password: 'Paul@2023',
       database: 'tracker'
-    },
+    });
+    connection.connect(function (err) {
+      if (err) throw err;
+    });
     console.log('Connected to the tracker database.')
-  );
-  module.exports = connection;
+
+    module.exports = connection;
