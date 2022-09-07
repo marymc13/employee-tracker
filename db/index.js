@@ -49,7 +49,7 @@ createEmployee(employees) {
     return this.connection
     .promise()
     .query(
-        "INSERT INTO employees SET ?", employees)
+        "INSERT INTO employees first_name, last_name, title, roles_id SET ?", employees)
 }
 
 //Update Employee Role
@@ -58,7 +58,7 @@ updateEmployeeRole(employeeId, roleId) {
     .promise()
     .query(
         "UPDATE employees SET roles_id = ? WHERE id = ?",
-        [roleId, employeeId]
+        [roleId, employeeId]  
     );
 }
 

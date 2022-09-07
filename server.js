@@ -208,7 +208,27 @@ function addEmployee() {
         }
 
         
-        
+        function updateEmployeeRole() {
+            prompt([
+                {
+                    name: "first_name",
+                    message:  "What is the employee's first name?"
+                },
+                {
+                    name: "last_name",
+                    message: "What is the employee's last name?"
+                },
+                {
+                    name: "roles_id",
+                    message: "What is the employee's new role?"
+                }
+            ])
+            .then(employee => {
+                db.updateEmployeeRole(employee)
+                .then(() => console. log(`Updated ${roles} to the database.`))
+                .then(() => loadPrompts())
+            })
+        }
         
 
 
