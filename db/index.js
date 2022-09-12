@@ -49,16 +49,23 @@ createEmployee(employees) {
     return this.connection
     .promise()
     .query(
-        "INSERT INTO employees first_name, last_name, title, roles_id SET ?", employees)
-}
+        `INSERT INTO employees(first_name, last_name, title, roles_id) VALUES("${employees.first_name}", "${employees.last_name}", "${employees.title}", "${employees.roles_id}")`, 
+      
+        // {
+        // first_name: employees.first_name,
+        //  last_name: employees.last_name,
+        //  roles_id: employees.roles_id
+        // }
+    
+)};
 
 //Update Employee Role
-updateEmployeeRole(employeeId, roleId) {
+updateEmployeeRole(employee) {
     return this.connection
     .promise()
     .query(
-        "UPDATE employees SET roles_id = ? WHERE id = ?",
-        [roleId, employeeId]  
+        `UPDATE employees SET roles_id = "${employee.roles_id}" WHERE first_name = "${employee.first_name}"` 
+         
     );
 }
 

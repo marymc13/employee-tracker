@@ -105,8 +105,8 @@ function addDepartment() {
             let department_name = res;
             db.createDepartment(department_name)
                 .then(() => console.log(`Added ${department_name} to database`))
-       
-        .then(() => loadPrompts());
+
+                .then(() => loadPrompts());
         })
 }
 
@@ -138,7 +138,7 @@ function addRole() {
                 },
                 {
                     name: "salary",
-                    message: "WHat is the salary?"
+                    message: "What is the salary?"
                 },
                 {
                     type: "list",
@@ -164,8 +164,63 @@ function viewEmployees() {
         })
         .then(() => loadPrompts());
 }
+ async function getAllRoles() {
+    let allRoles = await db.findAllRoles()
+    console.log(allRoles[0]);
+    const modifiedRoles = allRoles[0].map((role) => ({
+                    name: role.title,
+                    value: role.id
+                    
+                }
+                
+                ) 
+    )
+    console.log(modifiedRoles);
+    return modifiedRoles
+
+}
 //Add Employee
 function addEmployee() {
+    prompt([
+        {
+            name: "first_name",
+            type: "input",
+            message: "What is the employee's first name?"
+        },
+        {
+            name: "last_name",
+            type: "input",
+            message: "What is the employee's last name?"
+        },
+        {
+            name: "title",
+            type: "input",
+            message: "What is the employee's title?"
+        },
+        {
+            name: "roles_id",
+            type: "list",
+            message: "What is the employee's new role?",
+            choices: getAllRoles
+        }
+
+    ])
+
+        .then(async (res) => {
+            console.log(res);
+            // let firstName = res.first_name;
+            // let lastName = res.last_name;
+            // let role = res.roles_id
+         let storedData = await db.createEmployee(res)
+         console.log(storedData);
+         loadPrompts()
+
+           
+        })
+
+
+}
+function updateEmployeeRole() {
     prompt([
         {
             name: "first_name",
@@ -176,60 +231,21 @@ function addEmployee() {
             message: "What is the employee's last name?"
         },
         {
-            name: "title",
-            message: "What is the employee's title?",
+            name: "roles_id",
+            type: "list",
+            message: "What is the employee's new role?",
+            choices: getAllRoles
         }
     ])
-            .then(res => {
-                let firstName = res.first_name;
-                let lastName = res.last_name;
-
-                db.findAllRoles()
-                    .then(([rows]) => {
-                        let roles = rows;
-                        const roleChoices = roles.map(({ id, title }) => ({
-                            name: title,
-                            value: id
-                        }));
-                        prompt({
-                            type: "list",
-                            name: "roles_id",
-                            message: "Which role does the title belong to?",
-                            choices: roleChoices
-                        })
-                           
-             .then(employee => {
-                        db.createEmployee(employee)
-                            .then(() => console.log(`Added ${first_name} ${last_name} to the database`))
-                            .then(() => loadPrompts())
-                    })
-                })
+            .then(async (employee)  => {
+                let updatedData = await db.updateEmployeeRole(employee);
+                loadPrompts()
+                    // .then((roles) => console.log(`Updated ${roles} to the database.`))
+                    // .then(() => loadPrompts())
             })
+            
         }
 
-        
-        function updateEmployeeRole() {
-            prompt([
-                {
-                    name: "first_name",
-                    message:  "What is the employee's first name?"
-                },
-                {
-                    name: "last_name",
-                    message: "What is the employee's last name?"
-                },
-                {
-                    name: "roles_id",
-                    message: "What is the employee's new role?"
-                }
-            ])
-            .then(employee => {
-                db.updateEmployeeRole(employee)
-                .then(() => console. log(`Updated ${roles} to the database.`))
-                .then(() => loadPrompts())
-            })
-        }
-        
 
 
 
