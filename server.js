@@ -19,35 +19,35 @@ function loadPrompts() {
             choices: [
                 {
                     name: "View all Departments",
-                    value: "view_departments"
+                    value: "VIEW_DEPARTMENTS"
                 },
                 {
                     name: "View all Roles",
-                    value: "view_roles"
+                    value: "VIEW_ROLES"
                 },
                 {
                     name: "View all Employees",
-                    value: "view_employees"
+                    value: "VIEW_EMPLOYEES"
                 },
                 {
                     name: "Add Department",
-                    value: "add_department"
+                    value: "aDD_DEPARTMENT"
                 },
                 {
                     name: "Add Role",
-                    value: "add_role"
+                    value: "ADD_ROLE"
                 },
                 {
                     name: "Add Employee",
-                    value: "add_employee"
+                    value: "ADD_EMPLOYEE"
                 },
                 {
                     name: "Update Employee Role",
-                    value: "update_employee_role"
+                    value: "UPDATE_EMPLOYEE_ROLE"
                 },
                 {
                     name: "Quit",
-                    value: "quit"
+                    value: "QUIT"
                 }
             ]
         }
@@ -55,25 +55,25 @@ function loadPrompts() {
     ]).then(res => {
         let choice = res.choice;
         switch (choice) {
-            case "view_departments":
+            case "VIEW_DEPARTMENTS":
                 viewDepartments();
                 break;
-            case "view_roles":
+            case "VIEW_ROLES":
                 viewRoles();
                 break;
-            case "view_employees":
+            case "VIEW_EMPLOYEES":
                 viewEmployees();
                 break;
-            case "add_department":
+            case "ADD_DEPARTMENT":
                 addDepartment();
                 break;
-            case "add_role":
+            case "ADD_ROLE":
                 addRole();
                 break;
-            case "add_employee":
+            case "ADD_EMPLOYEE":
                 addEmployee();
                 break;
-            case "update_employee_role":
+            case "UPDATE_EMPLOYEE_ROLE":
                 updateEmployeeRole();
                 break;
             default:
@@ -217,6 +217,8 @@ function addEmployee() {
 
 
 }
+
+//Update Employee
 function updateEmployeeRole() {
     prompt([
         {
@@ -240,6 +242,7 @@ function updateEmployeeRole() {
             loadPrompts()
         })
 }
+
 //Quit
 function quit() {
     console.log("Updates Complete!");
