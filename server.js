@@ -101,8 +101,8 @@ function addDepartment() {
             message: "What is the name of the department?"
         }
     ])
-        .then(res => {
-            let department_name = res;
+        .then(department_name => {
+            // let department_name = res;
             db.createDepartment(department_name)
                 .then(() => console.log(`Added ${department_name} to database`))
 
@@ -164,16 +164,16 @@ function viewEmployees() {
         })
         .then(() => loadPrompts());
 }
- async function getAllRoles() {
+async function getAllRoles() {
     let allRoles = await db.findAllRoles()
     console.log(allRoles[0]);
     const modifiedRoles = allRoles[0].map((role) => ({
-                    name: role.title,
-                    value: role.id
-                    
-                }
-                
-                ) 
+        name: role.title,
+        value: role.id
+
+    }
+
+    )
     )
     console.log(modifiedRoles);
     return modifiedRoles
@@ -208,14 +208,11 @@ function addEmployee() {
 
         .then(async (res) => {
             console.log(res);
-            // let firstName = res.first_name;
-            // let lastName = res.last_name;
-            // let role = res.roles_id
-         let storedData = await db.createEmployee(res)
-         console.log(storedData);
-         loadPrompts()
+            let storedData = await db.createEmployee(res)
+            console.log(storedData);
+            loadPrompts()
 
-           
+
         })
 
 
@@ -237,14 +234,18 @@ function updateEmployeeRole() {
             choices: getAllRoles
         }
     ])
-            .then(async (employee)  => {
-                let updatedData = await db.updateEmployeeRole(employee);
-                loadPrompts()
-                    // .then((roles) => console.log(`Updated ${roles} to the database.`))
-                    // .then(() => loadPrompts())
-            })
-            
-        }
+        .then(async (employee) => {
+            let updatedData = await db.updateEmployeeRole(employee);
+            console.log(updatedData);
+            loadPrompts()
+        })
+}
+//Quit
+function quit() {
+    console.log("Updates Complete!");
+    process.exit();
+}
+
 
 
 
