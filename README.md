@@ -15,7 +15,7 @@ Employee Tracker
 AN SQL application that helps the employer keep track of it's employees, their roles, and their salaries.  The employer can view and add departments, roles, and employees to keep everything up to date. They can also update the employee's role.
 
 ## Installation:
-To install this application you must install inquirer@8.2.4
+To install this application you must install inquirer@8.2.4, MySQL2 package, and console.table package/
 
 ## Usage:
 This project would be used to keep track of the employees, their roles, and their salaries.  It can also be updated to     add new departments, roles, and employees.
