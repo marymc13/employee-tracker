@@ -39,7 +39,7 @@ marymc13
 https://github.com/marymc13/employee-tracker.git
 
 ## Walkthrough Video
-
+https://watch.screencastify.com/v/zD0ViaLKtYV7f8ZkxD1T
 
 ## Email:
 marymc135@hotmail.com

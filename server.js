@@ -31,7 +31,7 @@ function loadPrompts() {
                 },
                 {
                     name: "Add Department",
-                    value: "aDD_DEPARTMENT"
+                    value: "ADD_DEPARTMENT"
                 },
                 {
                     name: "Add Role",
